@@ -3,3 +3,4 @@ export default class Entity {
         ctx.drawImage(this.sprite, this.x, this.y, 50, 50)
     }
 }
+
