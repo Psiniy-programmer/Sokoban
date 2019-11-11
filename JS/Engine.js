@@ -39,8 +39,10 @@ export default class Enginge {
     start() {
         // Рисуем ящики //
         this.boxes.forEach(element => {
+            element.checkFinish();
             element.render(ctx);
         });
+        
         //////////////////
     }
 }

@@ -6,7 +6,7 @@ let Data = {
         4: {x: 160, y: 210}
     },
     finishChords: {
-        1: {finishX: 20, finishY: 40},
+        1: {finishX: 10, finishY: 10},
         2: {finishX: 100, finishY: 200},
         3: {finishX: 70, finishY: 100},
         4: {finishX: 150, finishY: 150}
