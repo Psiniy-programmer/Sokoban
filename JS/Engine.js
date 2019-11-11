@@ -1,31 +1,10 @@
 import Box from './Box.js'
-
-let boxCount = 4,
-    boxesChords = {
-        1: {
-            x: 10,
-            y: 10
-        },
-        2: {
-            x: 60,
-            y: 80
-        },
-        3: {
-            x: 110,
-            y: 150
-        },
-        4: {
-            x: 160,
-            y: 210
-        }
-    };
+import Data from './Data.js'
+let boxCount = 4;
 
 
 let canv = document.getElementById('canvas'),
     ctx = canv.getContext(`2d`);
-
-canv.height = 1000;
-canv.width = 1000;
 
 
 export default class Enginge {
@@ -33,7 +12,6 @@ export default class Enginge {
         this.boxes = [];
         this.setupBoxes();
     }
-
     // Заполняем поле ящиков у движка //
     setupBoxes() {
         for (let i = 0; i < boxCount; i++) {
@@ -48,11 +26,11 @@ export default class Enginge {
     }
     // Устанавливаем координаты ящикам //
     setBoxChords() {
-        for (let key in boxesChords) {
+        for (let key in Data.boxesChords) {
             for (let i = 0; i < boxCount; i++) {
                 if (key == i + 1) {
-                    this.boxes[i].x = boxesChords[key].x;
-                    this.boxes[i].y = boxesChords[key].y
+                    this.boxes[i].x = Data.boxesChords[key].x;
+                    this.boxes[i].y = Data.boxesChords[key].y
                 }
             }
         }
