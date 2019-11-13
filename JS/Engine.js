@@ -35,16 +35,31 @@ export default class Enginge {
             }
         }
     }
+    // Коллизия игрока и ящика
+    collision() {
+        this.boxes.forEach(element => {
+            if ((Math.abs(element.x - this.player.x) == 40 && element.y == this.player.y) ||
+                (Math.abs(element.y - this.player.y) == 40 && element.x == this.player.x)) {
+
+                if (element.x - this.player.x == 40 && element.y == this.player.y) element.move(ctx, 68);
+                if (element.x - this.player.x == (-40) && element.y == this.player.y) element.move(ctx, 65);
+                if (element.y - this.player.y == 40 && element.x == this.player.x) element.move(ctx, 83);
+                if (element.y - this.player.y == (-40) && element.x == this.player.x) element.move(ctx, 87);
+
+            }
+            this.player.render(ctx)
+        })
+    }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start() {
         this.player.render(ctx);
         // Рисуем ящики и чекаем их на финиш//
         this.boxes.forEach(element => {
-            element.checkFinish();
             element.render(ctx);
         });
-        //////////////////
+        // Регистрируем нажатие кнопочек //
         document.addEventListener('keydown', e => {
+            // Если все коробочки на нужных местах то победа и все такое //
             if (this.checkCount == true) alert("YOU WIN")
 
             switch (e.keyCode) {
@@ -61,10 +76,14 @@ export default class Enginge {
                     this.player.move(ctx, e.keyCode)
                     break;
             }
+            // Чекаем наши коробочки на финиш // и заодно рисуем их //
             this.boxes.forEach(element => {
                 if (element.checkFinish() == true) this.player.count++;
+                this.collision()
                 element.render(ctx)
-            })
+            });
+            // Чекаем коллизию //
+
         })
     }
 }
