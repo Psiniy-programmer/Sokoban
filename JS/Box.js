@@ -1,6 +1,7 @@
 let img = new Image();
     
-img.src = 'https://cactus-online.ru/upload/iblock/fa8/fa83ec5edf92fcd25c08ddfad647faed.jpg';
+img.src ="https://opengameart.org/sites/default/files/RTS_Crate.png"
+// img.src = 'https://cactus-online.ru/upload/iblock/fa8/fa83ec5edf92fcd25c08ddfad647faed.jpg';
 
 export default class Box extends NPC {
     constructor(xPos, yPos) {
@@ -19,5 +20,4 @@ export default class Box extends NPC {
         }
     }
 }
-import NPC from './NPC.js';import Data from './Data.js';
-
+import NPC from './NPC.js';import Data from '../Data.js'

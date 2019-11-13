@@ -6,7 +6,22 @@ export default class NPC extends Entity {
         this.x = xPos;
         this.y = yPos;
     }
-    move() {
+    move(ctx,dir) {
+        this.clear(ctx);
+        if (dir == 68) {
+            this.x += 10
+        }
+        if (dir == 65) {
+            this.x -= 10
+        }
+        if (dir == 87) {
+            this.y -= 10
+        }
+        if (dir == 83) {
+            this.y += 10
+        }
+        this.render(ctx);
+        console.log(this.checkCount());
         // code...
     }
 }
