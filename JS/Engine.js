@@ -1,9 +1,11 @@
 import Box from './Box.js'
 import Data from '../Data.js'
 import Player from './Player.js'
+import Map from './Map.js';
 
 let canv = document.getElementById('canvas'),
     ctx = canv.getContext(`2d`);
+
 
 
 export default class Enginge {
@@ -11,6 +13,7 @@ export default class Enginge {
         this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y);
         this.boxes = [];
         this.setupBoxes();
+        this.map = new Map();
     }
     // Заполняем поле ящиков у движка //
     setupBoxes() {
@@ -48,15 +51,25 @@ export default class Enginge {
 
             }
             this.player.render(ctx)
-        })
+        }) 
+    }
+
+    frame() {
+        this.boxes.forEach(element => {
+            //this.map.drawMap(ctx)
+            if (element.checkFinish() == true) this.player.count++;
+            this.collision()
+            element.render(ctx)
+        });
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start() {
+        this.map.drawMap(ctx)
         this.player.render(ctx);
-        // Рисуем ящики и чекаем их на финиш//
         this.boxes.forEach(element => {
             element.render(ctx);
         });
+        
         // Регистрируем нажатие кнопочек //
         document.addEventListener('keydown', e => {
             // Если все коробочки на нужных местах то победа и все такое //
@@ -64,26 +77,22 @@ export default class Enginge {
 
             switch (e.keyCode) {
                 case 68:
-                    this.player.move(ctx, e.keyCode)
+                    this.player.move(ctx, e.keyCode);
+                    this.frame()
                     break;
                 case 65:
-                    this.player.move(ctx, e.keyCode)
+                    this.player.move(ctx, e.keyCode);
+                    this.frame()
                     break;
                 case 87:
-                    this.player.move(ctx, e.keyCode)
+                    this.player.move(ctx, e.keyCode);
+                    this.frame()
                     break;
                 case 83:
-                    this.player.move(ctx, e.keyCode)
+                    this.player.move(ctx, e.keyCode);
+                    this.frame()
                     break;
             }
-            // Чекаем наши коробочки на финиш // и заодно рисуем их //
-            this.boxes.forEach(element => {
-                if (element.checkFinish() == true) this.player.count++;
-                this.collision()
-                element.render(ctx)
-            });
-            // Чекаем коллизию //
-
         })
     }
 }
