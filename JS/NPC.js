@@ -5,8 +5,7 @@ export default class NPC extends Entity {
         this.x = xPos;
         this.y = yPos;
     }
-    move(ctx,dir) {
-        this.clear(ctx);
+    move(dir) {
         if (dir == 68) {
             this.x += 10
         }

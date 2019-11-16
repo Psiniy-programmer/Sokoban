@@ -40,27 +40,31 @@ export default class Enginge {
     }
     // Коллизия игрока и ящика
     collision() {
+        
         this.boxes.forEach(element => {
             if ((Math.abs(element.x - this.player.x) == 40 && element.y == this.player.y) ||
                 (Math.abs(element.y - this.player.y) == 40 && element.x == this.player.x)) {
 
-                if (element.x - this.player.x == 40 && element.y == this.player.y) element.move(ctx, 68);
-                if (element.x - this.player.x == (-40) && element.y == this.player.y) element.move(ctx, 65);
-                if (element.y - this.player.y == 40 && element.x == this.player.x) element.move(ctx, 83);
-                if (element.y - this.player.y == (-40) && element.x == this.player.x) element.move(ctx, 87);
+                if (element.x - this.player.x == 40 && element.y == this.player.y) element.move(68);
+                if (element.x - this.player.x == (-40) && element.y == this.player.y) element.move(65);
+                if (element.y - this.player.y == 40 && element.x == this.player.x) element.move(83);
+                if (element.y - this.player.y == (-40) && element.x == this.player.x) element.move(87);
 
             }
+            
             this.player.render(ctx)
         }) 
     }
 
     frame() {
+        this.map.clear(ctx);
+        this.map.drawMap(ctx)
         this.boxes.forEach(element => {
-            //this.map.drawMap(ctx)
             if (element.checkFinish() == true) this.player.count++;
             this.collision()
             element.render(ctx)
-        });
+        })
+        
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start() {
@@ -74,22 +78,22 @@ export default class Enginge {
         document.addEventListener('keydown', e => {
             // Если все коробочки на нужных местах то победа и все такое //
             if (this.checkCount == true) alert("YOU WIN")
-
+            
             switch (e.keyCode) {
                 case 68:
-                    this.player.move(ctx, e.keyCode);
+                    this.player.move(e.keyCode);
                     this.frame()
                     break;
                 case 65:
-                    this.player.move(ctx, e.keyCode);
+                    this.player.move(e.keyCode);
                     this.frame()
                     break;
                 case 87:
-                    this.player.move(ctx, e.keyCode);
+                    this.player.move(e.keyCode);
                     this.frame()
                     break;
                 case 83:
-                    this.player.move(ctx, e.keyCode);
+                    this.player.move(e.keyCode);
                     this.frame()
                     break;
             }
