@@ -7,8 +7,8 @@ let Data = {
         4: {x: 200, y: 210}
     },
     finishChords: {
-        1: {finishX: 10, finishY: 10},
-        2: {finishX: 100, finishY: 200},
+        1: {finishX: 160, finishY: 100},
+        2: {finishX: 160, finishY: 120},
         3: {finishX: 70, finishY: 100},
         4: {finishX: 150, finishY: 150}
     },
