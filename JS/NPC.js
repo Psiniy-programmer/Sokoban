@@ -1,9 +1,10 @@
 import Entity from "./Entity.js";
 export default class NPC extends Entity {
-    constructor(xPos, yPos) {
+    constructor(xPos, yPos,img) {
         super();
         this.x = xPos;
         this.y = yPos;
+        this.sprite = img;
     }
     move(dir) {
         if (dir == 68) {

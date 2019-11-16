@@ -2,13 +2,20 @@ import Box from './Box.js'
 import Data from '../Data.js'
 import Player from './Player.js'
 import Map from './Map.js';
+import NPC from './NPC.js'
 
 let canv = document.getElementById('canvas'),
     ctx = canv.getContext(`2d`);
 
+let playerImg = new Image(),
+    boxImg = new Image();
+
+playerImg.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8f/Tourist-1.png.png/revision/latest?cb=20181204072339"
+boxImg.src = "https://opengameart.org/sites/default/files/RTS_Crate.png"
+
 export default class Enginge {
     constructor() {
-        this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y);
+        this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y, playerImg);
         this.boxes = [];
         this.setupBoxes();
         this.map = new Map();
@@ -22,7 +29,7 @@ export default class Enginge {
     }
     // Создаём сами ящики //
     addBox() {
-        let box = new Box();
+        let box = new Box(0, 0, boxImg);
         this.boxes.push(box);
     }
     // Устанавливаем координаты ящикам //
