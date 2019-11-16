@@ -41,12 +41,12 @@ export default class Enginge {
         this.boxes.forEach(element => {
             if ((Math.abs(element.x - this.player.x) == 40 && element.y == this.player.y) ||
                 (Math.abs(element.y - this.player.y) == 40 && element.x == this.player.x)) {
-                    
-                        if (element.x - this.player.x == 40 && element.y == this.player.y) element.move(68);
-                        if (element.x - this.player.x == (-40) && element.y == this.player.y) element.move(65);
-                        if (element.y - this.player.y == 40 && element.x == this.player.x) element.move(83);
-                        if (element.y - this.player.y == (-40) && element.x == this.player.x) element.move(87);
-                    
+
+                if (element.x - this.player.x == 40 && element.y == this.player.y) element.move(68);
+                if (element.x - this.player.x == (-40) && element.y == this.player.y) element.move(65);
+                if (element.y - this.player.y == 40 && element.x == this.player.x) element.move(83);
+                if (element.y - this.player.y == (-40) && element.x == this.player.x) element.move(87);
+
             }
         })
     }

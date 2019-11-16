@@ -30,7 +30,7 @@ export default class Map extends Entity {
                 if (this.map[i][j] == 1) {
                     ctx.fillStyle = "blue"
                 }
-                ctx.fillRect(i * 60, j * 60, 50, 50)
+                ctx.fillRect(i * 60, j * 60, 55, 50)
             }
         }
     }
