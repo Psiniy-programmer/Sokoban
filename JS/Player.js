@@ -9,7 +9,7 @@ export default class Player extends NPC {
         this.count  = 0;
     }
     checkCount() {
-        return (this.count == Data.boxCount) ? true : false;
+        return (this.count == Data.boxCount) ? true : false
     }
 }
 

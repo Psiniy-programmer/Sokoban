@@ -8,25 +8,29 @@ export default class Map extends Entity {
         this.map = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
         ]
     }
 
     drawMap(ctx) {
-        this.clear(ctx);
-        for (let i = 0; i < 12; i++) {
-            for (let j = 0; j < 9; j++) {
-                // if (this.map[i][j] == 0) {
-                    // ctx.drawImage(test,i*34,j*34)
-                //}
-                ctx.fillStyle = "red";
-                ctx.fillRect(i * 64, j * 64, 50, 50)
+        for (let i = 0; i < this.map.length; i++) {
+            for (let j = 0; j < this.map[i].length; j++) {
+                if (this.map[i][j] == 0) {
+                    ctx.fillStyle = "red";
+                }
+                if (this.map[i][j] == 1) {
+                    ctx.fillStyle = "blue"
+                }
+                ctx.fillRect(i * 60, j * 60, 50, 50)
             }
         }
     }
