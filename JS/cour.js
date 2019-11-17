@@ -5,7 +5,6 @@ const boxTest = () => {
     console.log(kek);
     kek.start();
 }
-
 boxTest()
 
 
