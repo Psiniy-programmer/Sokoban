@@ -7,8 +7,8 @@ export default class Map extends Entity {
     constructor() {
         super();
         this.map = [
-            [1, 1, 1, 1, 1, 1, 0, 0],// 0, 0, 0, 0],
-            [1, 0, 0, 0, 0, 1, 0, 0],// 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 4, 4],// 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 1, 4, 4],// 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 1, 1, 1],// 0, 0, 0, 0],
             [1, 2, 0, 0, 0, 0, 2, 1],// 0, 0, 0, 0],
             [1, 1, 1, 1, 1, 1, 1, 1],// 0, 0, 0, 0],
@@ -33,7 +33,10 @@ export default class Map extends Entity {
                     ctx.fillStyle = "blue"
                 }
                 if (this.map[i][j] == 2) {
-                    ctx.fillStyle = "orange"
+                    ctx.fillStyle = "green"
+                }
+                if (this.map[i][j] == 4) {
+                    ctx.fillStyle = "black"
                 }
                 ctx.fillRect(i * 60, j * 60, 55, 50)
             }

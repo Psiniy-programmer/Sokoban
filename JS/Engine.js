@@ -104,14 +104,20 @@ export default class Enginge {
 
     // кадр который постоянно будет отрисовываться
     frame(key) {
+        if (this.player.checkCount() == true) alert("WIN")
         this.map.clear(ctx)
         this.map.drawMap(ctx)
         this.player.render(ctx)
         this.collision(key)
         this.boxes.forEach(element => {
-            if (element.checkFinish() == true) this.player.count++;
+            element.checkFinish()
+            if (element.finish == true && element.checked==false) {
+                this.player.count++;
+                element.checked = true;
+            }
             element.render(ctx)
         })
+        console.log(this.player.count)
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start() {
@@ -125,8 +131,6 @@ export default class Enginge {
         document.addEventListener('keydown', e => {
             let key = e.keyCode;
             // Если все коробочки на нужных местах то победа и все такое //
-            if (this.checkCount == true) alert("YOU WIN")
-            console.error(this.player)
             switch (e.keyCode) {
                 case 68:
                     this.player.move(e.keyCode);

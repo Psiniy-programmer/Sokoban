@@ -9,3 +9,4 @@ export default class Player extends NPC {
 }
 
 import NPC from './NPC.js'
+import Data from '../Data.js'
