@@ -27,7 +27,7 @@ export default class Map extends Entity {
         for (let i = 0; i < this.map.length; i++) {
             for (let j = 0; j < this.map[i].length; j++) {
                 if (this.map[i][j] == 0) {
-                    ctx.fillStyle = "red";
+                    ctx.fillStyle = "white";
                 }
                 if (this.map[i][j] == 1) {
                     ctx.fillStyle = "blue"
