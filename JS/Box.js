@@ -2,6 +2,7 @@ export default class Box extends NPC {
     constructor(xPos, yPos, img) {
         super(xPos, yPos, img);
         this.finish = false;
+        this.checked = false;
     }
     // чекер для позиции коробки
     checkFinish() {

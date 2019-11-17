@@ -44,30 +44,80 @@ export default class Enginge {
         }
     }
     // Коллизия игрока и ящика
-    collision() {
+    collision(keyB) {
+        // Коллизии для ящиков и стен
         this.boxes.forEach(element => {
-            if ((Math.abs(element.x - this.player.x) == 40 && element.y == this.player.y) ||
-                (Math.abs(element.y - this.player.y) == 40 && element.x == this.player.x)) {
-
-                if (element.x - this.player.x == 40 && element.y == this.player.y) element.move(68);
-                if (element.x - this.player.x == (-40) && element.y == this.player.y) element.move(65);
-                if (element.y - this.player.y == 40 && element.x == this.player.x) element.move(83);
-                if (element.y - this.player.y == (-40) && element.x == this.player.x) element.move(87);
-
+            if (this.player.x == element.x && this.player.y == element.y) {
+                element.move(keyB)
+                for (let key in this.map.wals) {
+                    if (element.x == this.map.wals[key].x && element.y == this.map.wals[key].y) {
+                        this.collisionWalls(keyB, element);
+                        break;
+                    }
+                }
             }
         })
+
+        // Коллизии для игрока и стен
+        for (let key in this.map.wals) {
+            if (this.player.x == this.map.wals[key].x && this.player.y == this.map.wals[key].y) {
+                this.collisionWalls(keyB, this.player)
+            }
+        }
+    }
+    // ну я думаю как бы понятно что тут происходит
+    collisionWalls(keyB, element) {
+        if (keyB == 65) {
+            if (element == this.player) {
+                this.player.move(68)
+            } else {
+                element.move(68);
+                this.player.move(68);
+            }
+        }
+        if (keyB == 68) {
+            if (element == this.player) {
+                this.player.move(65)
+            } else {
+                element.move(65);
+                this.player.move(65);
+            }
+        }
+        if (keyB == 87) {
+            if (element == this.player) {
+                this.player.move(83)
+            } else {
+                element.move(83);
+                this.player.move(83);
+            }
+        }
+        if (keyB == 83) {
+            if (element == this.player) {
+                this.player.move(87)
+            } else {
+                element.move(87);
+                this.player.move(87);
+            }
+        }
+        this.frame();
     }
 
-    frame() {
-        this.map.clear(ctx);
-        this.map.drawMap(ctx);
+    // кадр который постоянно будет отрисовываться
+    frame(key) {
+        if (this.player.checkCount() == true) alert("WIN")
+        this.map.clear(ctx)
+        this.map.drawMap(ctx)
         this.player.render(ctx)
+        this.collision(key)
         this.boxes.forEach(element => {
-            if (element.checkFinish() == true) this.player.count++;
-            this.collision()
+            element.checkFinish()
+            if (element.finish == true && element.checked==false) {
+                this.player.count++;
+                element.checked = true;
+            }
             element.render(ctx)
         })
-
+        console.log(this.player.count)
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start() {
@@ -79,27 +129,23 @@ export default class Enginge {
 
         // Регистрируем нажатие кнопочек //
         document.addEventListener('keydown', e => {
+            let key = e.keyCode;
             // Если все коробочки на нужных местах то победа и все такое //
-            if (this.checkCount == true) alert("YOU WIN")
-
             switch (e.keyCode) {
                 case 68:
                     this.player.move(e.keyCode);
-                    this.frame()
                     break;
                 case 65:
                     this.player.move(e.keyCode);
-                    this.frame()
                     break;
                 case 87:
                     this.player.move(e.keyCode);
-                    this.frame()
                     break;
                 case 83:
                     this.player.move(e.keyCode);
-                    this.frame()
                     break;
             }
+            this.frame(key)
         })
     }
 }
