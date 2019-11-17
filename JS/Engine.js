@@ -44,13 +44,64 @@ export default class Enginge {
         }
     }
     // Коллизия игрока и ящика
-    collision(key) {
+    collision(keyB) {
+        // Коллизии для ящиков и стен
         this.boxes.forEach(element => {
             if (this.player.x == element.x && this.player.y == element.y) {
-                element.move(key)
+                element.move(keyB)
+                for (let key in this.map.wals) {
+                    if (element.x == this.map.wals[key].x && element.y == this.map.wals[key].y) {
+                        this.collisionWalls(keyB, element);
+                        break;
+                    }
+                }
             }
         })
+
+        // Коллизии для игрока и стен
+        for (let key in this.map.wals) {
+            if (this.player.x == this.map.wals[key].x && this.player.y == this.map.wals[key].y) {
+                this.collisionWalls(keyB, this.player)
+            }
+        }
     }
+    // ну я думаю как бы понятно что тут происходит
+    collisionWalls(keyB, element) {
+        if (keyB == 65) {
+            if (element == this.player) {
+                this.player.move(68)
+            } else {
+                element.move(68);
+                this.player.move(68);
+            }
+        }
+        if (keyB == 68) {
+            if (element == this.player) {
+                this.player.move(65)
+            } else {
+                element.move(65);
+                this.player.move(65);
+            }
+        }
+        if (keyB == 87) {
+            if (element == this.player) {
+                this.player.move(83)
+            } else {
+                element.move(83);
+                this.player.move(83);
+            }
+        }
+        if (keyB == 83) {
+            if (element == this.player) {
+                this.player.move(87)
+            } else {
+                element.move(87);
+                this.player.move(87);
+            }
+        }
+        this.frame();
+    }
+
     // кадр который постоянно будет отрисовываться
     frame(key) {
         this.map.clear(ctx)
@@ -75,6 +126,7 @@ export default class Enginge {
             let key = e.keyCode;
             // Если все коробочки на нужных местах то победа и все такое //
             if (this.checkCount == true) alert("YOU WIN")
+            console.error(this.player)
             switch (e.keyCode) {
                 case 68:
                     this.player.move(e.keyCode);
