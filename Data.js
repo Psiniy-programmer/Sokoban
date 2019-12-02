@@ -1,4 +1,16 @@
+import {level0, redactor} from "./JS/main.js"
 let Data = {
+    menu: {
+        text: {
+            0: "CLICK ME FOR START GAME",
+            1: "CLICKE ME FOR CREATE LEVEL"
+        },
+        func: {
+            0: level0,
+            1: redactor
+        },
+        btnCount: 2,
+    },
     boxCount: 2,
     boxesChords: {
         1: {x: 180, y: 120},
