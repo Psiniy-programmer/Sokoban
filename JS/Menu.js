@@ -1,37 +1,28 @@
 import Enginge from './Engine.js'
+import Entity from './Entity.js'
 import Data from '../Data.js'
-// let start = prompt("Do u want start?", "yes"),
-let start = 'yes',
-	canv = document.getElementById('canvas'),
+
+let	canv = document.getElementById('canvas'),
 	buttons = document.getElementById('buttons')
 
-export default class Menu {
+export default class Menu extends Entity{
 	constructor() {
+		super(),
 		this.btnArr = [],
-		this.createButtons()
+		this.domCreator('button', buttons, this.btnArr, Data.menu.btnCount),
+		this.setButtons()
 	}
-	
+
 	defaultStart() {
 		this.hideButtons()
-		if (start == "yes") {
-			let kek = new Enginge();
-			console.log(kek)
-			canv.style.display="block"
-			kek.start()
-	   		alert("Press SPACE to start")
-		}
+		let kek = new Enginge();
+		console.log(kek)
+		canv.style.display="block"
+		kek.start()
+	   	alert("Press SPACE to start")
 	}
 
-	hideButtons() {
-		this.btnArr.forEach(element => {
-		element.style.display = 'none'
-		})
-	}
-
-	createButtons() {
-		for(let i = 0 ; i < Data.menu.btnCount;i++) {
-			this.btnArr[i] = document.createElement('button')
-		}
+	setButtons() {
 		for (let key in Data.menu.text) {
 			this.btnArr[key].innerHTML = Data.menu.text[key]
 		}
@@ -39,14 +30,12 @@ export default class Menu {
 			this.btnArr[key].onclick = Data.menu.func[key]
 			console.error(Data.menu.func[key])
 		}
-		this.btnArr.forEach(element => {
-			element.type = "button"
-			buttons.appendChild(element)
-		})
 	}
 
-	levelDesign() {
-		this.hideButtons()
-		alert("LD WORDKS")
+	hideButtons() {
+		this.btnArr.forEach(element => {
+		element.style.display = 'none'
+		})
+		buttons.style.display = 'none'
 	}
 }
