@@ -23,18 +23,69 @@ class Editor extends Dom {
 
 	init(other) {
 		other.forEach(element => {
-			element.value = 1
+			element.value = 0
 		})
 	}
 
 	pushF() {
-		let temp = 0;
+		let tempCounter = 0;
 		for (let i = 0; i < 4; i++) {
 			for (let j = 0; j < 4; j++) {
-				this.field[i][j] = this.inputs[temp].value
-				temp++
+				this.field[i][j] = this.inputs[tempCounter].value
+				tempCounter++
 			}
 		}
+	}
+// 0white = floor, 2green = finish, 1blue = wall, 4black = darkness, 5Player, 6Box
+	setMapChords() {
+		let x = 0,
+			y = 0,
+			counter = 0
+
+		for (let i = 0; i < 4; i++) {
+			for (let j = 0 ; j < 4; j++) {
+				x = i * 60
+				y = j * 60
+				if (this.field[i][j] == 5) {
+					Data.PlayerChords.x = x
+					Data.PlayerChords.y = y
+				}
+				if (this.field[i][j] == 1) {
+					for (let key in Data.WallsChords.fromEditor){
+						if (counter == key) {
+							Data.WallsChords.fromEditor[key].x = x 
+							Data.WallsChords.fromEditor[key].y = y
+						}
+					}
+				}
+				if (this.field[i][j] == 2) {
+					for (let key in Data.finishChords) {
+						if (counter == key) {
+							Data.finishChords[key].finishX = x 
+							Data.finishChords[key].finishY = y
+						}
+					}
+				}
+				if (this.field[i][j] == 6) {
+					for (let key in Data.boxesChords.fromEditor) {
+						if (counter == key) {
+							Data.boxesChords.fromEditor[key].x = x
+							Data.boxesChords.fromEditor[key].y = y
+						}
+					}
+				}
+				counter++
+			}
+		}
+		// this.field.forEach(element => {
+		// 	x = tempCounter * 60
+		// 	y = tempCounter * 60
+		// 	if (element == 5) {
+		// 		Data.PlayerChords.x = x
+		// 		Data.PlayerChords.y = y
+		// 	}
+		// 	tempCounter++
+		// })
 	}
 }
 

@@ -14,31 +14,31 @@ playerImg.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8
 boxImg.src = "https://opengameart.org/sites/default/files/RTS_Crate.png"
 
 export default class Enginge {
-    constructor(mapData) {
-        this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y, playerImg);
-        this.boxes = [];
-        this.setupBoxes();
-        this.map = new Map(mapData);
+    constructor(mapData, wallsChords, boxesChords, boxesCount) {
+        this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y, playerImg)
+        this.boxes = []
+        this.setupBoxes(boxesCount,boxesChords)
+        this.map = new Map(mapData, wallsChords)
     }
     // Заполняем поле ящиков у движка //
-    setupBoxes() {
-        for (let i = 0; i < Data.boxCount; i++) {
-            this.addBox();
+    setupBoxes(boxesCount,boxesChords) {
+        for (let i = 0; i < boxesCount; i++) {
+            this.addBox()
         }
-        this.setBoxChords();
+        this.setBoxChords(boxesCount, boxesChords)
     }
     // Создаём сами ящики //
     addBox() {
-        let box = new Box(0, 0, boxImg);
-        this.boxes.push(box);
+        let box = new Box(0, 0, boxImg)
+        this.boxes.push(box)
     }
     // Устанавливаем координаты ящикам //
-    setBoxChords() {
-        for (let key in Data.boxesChords) {
-            for (let i = 0; i < Data.boxCount; i++) {
+    setBoxChords(boxesCount, boxesChords) {
+        for (let key in boxesChords) {
+            for (let i = 0; i < boxesCount; i++) {
                 if (key == i + 1) {
-                    this.boxes[i].x = Data.boxesChords[key].x;
-                    this.boxes[i].y = Data.boxesChords[key].y
+                    this.boxes[i].x = boxesChords[key].x
+                    this.boxes[i].y = boxesChords[key].y
                 }
             }
         }
@@ -117,7 +117,6 @@ export default class Enginge {
             }
             element.render(ctx)
         })
-        console.log(this.player.count)
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start() {
