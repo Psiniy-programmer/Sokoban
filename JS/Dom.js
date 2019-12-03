@@ -1,9 +1,10 @@
-export default class DomCreator {
-	domCreator(type, DOM, other, count) {
-	for(let i = 0 ; i < count;i++) {
-		other[i] = document.createElement(type)
-		other[i].className = type + " " + type + i
-	}
+export default class Dom {
+	domCreate(type, DOM, other, count) {
+		for(let i = 0 ; i < count;i++) {
+			other[i] = document.createElement(type)
+			other[i].className = type + " " + type + i
+
+		}
 	other.forEach(element => {
 		element.type = type
 		DOM.appendChild(element)
@@ -17,7 +18,7 @@ export default class DomCreator {
 			other[key].onclick = dataFunc[key]
 		}
 	}
-	hideButtons(other, domElem) {
+	hideDomElem(other, domElem) {
 		other.forEach(element => {
 		element.style.display = 'none'
 		})
@@ -25,8 +26,11 @@ export default class DomCreator {
 	}
 	showDom(other, domElem) {
 		other.forEach(element => {
-			element.style.display = 'block'
+			element.style.display = 'flex'
 		})
-		domElem.style.display = 'block'
+		domElem.style.display = 'flex'
+	}
+	getValue(other) {
+		return other.value
 	}
 }

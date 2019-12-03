@@ -1,10 +1,10 @@
-import DomCreator from "./DomCreator.js"
+import Dom from "./Dom.js"
 import Data from "../Data.js"
 
 let inputs = document.getElementById("inputs"),
 	inputButtons = document.getElementById("input_buttons")
 
-class Editor extends DomCreator {
+class Editor extends Dom {
 	constructor() {
 		super(),
 		this.field = [
@@ -15,11 +15,28 @@ class Editor extends DomCreator {
 		],
 		this.inputs = [],
 		this.buttons = [],
-		this.domCreator("input", inputs, this.inputs, 16),
-		this.domCreator("button", inputButtons, this.buttons, 1),
+		this.domCreate("input", inputs, this.inputs, 16),
+		this.domCreate("button", inputButtons, this.buttons, 2),
 		this.setButtons(Data.editor.text, Data.editor.func , this.buttons)
-		this.hideButtons(this.inputs, inputButtons)
+		this.hideDomElem(this.inputs, inputButtons)
 	}
+
+	init(other) {
+		other.forEach(element => {
+			element.value = 1
+		})
+	}
+
+	pushF() {
+		let temp = 0;
+		for (let i = 0; i < 4; i++) {
+			for (let j = 0; j < 4; j++) {
+				this.field[i][j] = this.inputs[temp].value
+				temp++
+			}
+		}
+	}
+
 	levelStarter() {
 		alert("START BLYAD");
 	}	

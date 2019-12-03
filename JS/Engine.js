@@ -14,11 +14,11 @@ playerImg.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8
 boxImg.src = "https://opengameart.org/sites/default/files/RTS_Crate.png"
 
 export default class Enginge {
-    constructor() {
+    constructor(mapData) {
         this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y, playerImg);
         this.boxes = [];
         this.setupBoxes();
-        this.map = new Map();
+        this.map = new Map(mapData);
     }
     // Заполняем поле ящиков у движка //
     setupBoxes() {

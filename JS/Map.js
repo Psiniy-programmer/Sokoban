@@ -4,22 +4,9 @@ let test = new Image();
 test.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8f/Tourist-1.png.png/revision/latest?cb=20181204072339"
 
 export default class Map extends Entity {
-    constructor() {
+    constructor(map) {
         super();
-        this.map = [
-            [1, 1, 1, 1, 1, 1, 4, 4],// 0, 0, 0, 0],
-            [1, 0, 0, 0, 0, 1, 4, 4],// 0, 0, 0, 0],
-            [1, 0, 0, 0, 0, 1, 1, 1],// 0, 0, 0, 0],
-            [1, 2, 0, 0, 0, 0, 2, 1],// 0, 0, 0, 0],
-            [1, 1, 1, 1, 1, 1, 1, 1],// 0, 0, 0, 0],
-            // [0, 0, 0, 0, 0, 0, 0, 0],// 0, 0, 0, 0],
-            // [0, 0, 0, 0, 0, 0, 0, 0],// 0, 0, 0, 0],
-            // [0, 0, 0, 0, 0, 0, 0, 0],// 0, 0, 0, 0],
-            // [0, 0, 0, 0, 0, 0, 0, 0],// 0, 0, 0, 0],
-            // [0, 0, 0, 0, 0, 0, 0, 0],// 0, 0, 0, 0],
-            // [0, 0, 0, 0, 0, 0, 0, 0],//0, 0, 0, 0],
-            // [0, 0, 0, 0, 0, 0, 0, 0]// 0, 0, 0, 0]
-        ],
+        this.map = map,
         this.wals = Data.WallsChords;
     }
 

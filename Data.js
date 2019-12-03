@@ -1,6 +1,16 @@
-import {level0, redactor, syka} from "./JS/main.js"
+import {level0, redactor, syka, setMap } from "./JS/main.js"
 
 let Data = {
+    map: {
+        default: [
+            [1, 1, 1, 1, 1, 1, 4, 4],
+            [1, 0, 0, 0, 0, 1, 4, 4],
+            [1, 0, 0, 0, 0, 1, 1, 1],
+            [1, 2, 0, 0, 0, 0, 2, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1],
+        ],
+        fromEditor: [1]
+    },
     menu: {
         text: {
             0: "CLICK ME FOR START GAME",
@@ -14,10 +24,12 @@ let Data = {
     },
     editor: {
         text: {
-            0: "Start Level"
+            0: "Get Map",
+            1: "Start Level"
         },
         func: {
-            0: syka,
+            0: setMap,
+            1: syka
         }
     },
     boxCount: 2,
