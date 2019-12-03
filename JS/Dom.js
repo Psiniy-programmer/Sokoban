@@ -10,6 +10,7 @@ export default class Dom {
 		DOM.appendChild(element)
 	})
 	}
+
 	setButtons(dataText, dataFunc, other) {
 		for (let key in dataText) {
 			other[key].innerHTML = dataText[key]
@@ -18,19 +19,18 @@ export default class Dom {
 			other[key].onclick = dataFunc[key]
 		}
 	}
+
 	hideDomElem(other, domElem) {
 		other.forEach(element => {
 		element.style.display = 'none'
 		})
 		domElem.style.display = 'none'
 	}
+
 	showDom(other, domElem) {
 		other.forEach(element => {
 			element.style.display = 'flex'
 		})
 		domElem.style.display = 'flex'
-	}
-	getValue(other) {
-		return other.value
 	}
 }

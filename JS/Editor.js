@@ -36,10 +36,6 @@ class Editor extends Dom {
 			}
 		}
 	}
-
-	levelStarter() {
-		alert("START BLYAD");
-	}	
 }
 
 export { Editor, inputs as editorInputs, inputButtons}

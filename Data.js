@@ -1,4 +1,4 @@
-import {level0, redactor, syka, setMap } from "./JS/main.js"
+import {level0, redactor, editorLevel, setMap } from "./JS/main.js"
 
 let Data = {
     map: {
@@ -29,7 +29,7 @@ let Data = {
         },
         func: {
             0: setMap,
-            1: syka
+            1: editorLevel
         }
     },
     boxCount: 2,
