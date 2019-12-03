@@ -1,4 +1,5 @@
-import {level0, redactor} from "./JS/main.js"
+import {level0, redactor, syka} from "./JS/main.js"
+
 let Data = {
     menu: {
         text: {
@@ -10,6 +11,14 @@ let Data = {
             1: redactor
         },
         btnCount: 2,
+    },
+    editor: {
+        text: {
+            0: "Start Level"
+        },
+        func: {
+            0: syka,
+        }
     },
     boxCount: 2,
     boxesChords: {

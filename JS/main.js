@@ -1,18 +1,24 @@
-import Menu from "./Menu.js"
-import Editor from "./Editor.js"
+import { Menu, menuButtons } from "./Menu.js"
+import { Editor, editorInputs, inputButtons} from "./Editor.js"
 
-const game = new Menu();
-// game.hideButtons()
+const menu = new Menu()
+const editor = new Editor()
 
 function defaultLevel() {
-	game.defaultStart();
+	menu.defaultStart()
 }
 
 function levelCreator(){
-	game.hideButtons()
-	const editor = new Editor();
+	menu.hideButtons(menu.btnArr, buttons)
+	editor.showDom(editor.inputs, editorInputs)
+	editor.showDom(editor.buttons, inputButtons)
 	console.log(editor)
-	alert("Реализация появится на днях")
+	// alert("Реализация появится на днях")
 }
 
-export {defaultLevel as level0, levelCreator as redactor}
+function syka() {
+	editor.levelStarter()
+}
+
+
+export {defaultLevel as level0, levelCreator as redactor, syka}

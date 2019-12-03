@@ -12,15 +12,15 @@ h2 {
 }
 
 #buttons {
-	margin-top: 200px;
+	margin-top: 160px;
 	width: 200px;
 	display: flex;
 	flex-direction: column;
-	margin-left: 220px;
+	margin-left: 180px;
 }
 
 #inputs {
-	width: 50px;
+	width: 500px;
 	height: 200px;
 	display: flex;
 	flex-direction: column;
@@ -28,5 +28,10 @@ h2 {
 }
 
 .input {
-	height: 20%
+	height: 5%;
+	text-align: center;
+}
+
+#input_buttons {
+	text-align: center;
 }
