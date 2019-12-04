@@ -2,7 +2,6 @@ import Box from './Box.js'
 import Data from '../Data.js'
 import Player from './Player.js'
 import Map from './Map.js';
-import NPC from './NPC.js'
 
 let canv = document.getElementById('canvas'),
     ctx = canv.getContext(`2d`);
