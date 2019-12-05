@@ -1,5 +1,12 @@
-import { Menu, menuButtons } from "./Menu.js"
-import { Editor, editorInputs, inputButtons} from "./Editor.js"
+import {
+	Menu,
+	menuButtons
+} from "./Menu.js"
+import {
+	Editor,
+	editorInputs,
+	inputButtons
+} from "./Editor.js"
 import Enginge from "./Engine.js"
 import Data from "../Data.js"
 
@@ -12,7 +19,8 @@ function defaultLevel() {
 	menu.defaultStart()
 	let kek = new Enginge(Data.map.default, Data.WallsChords.default, Data.boxesChords.default, Data.boxCount.default)
 	kek.start()
-   	alert("Press SPACE to start")
+	console.error(Data.boxCount.default)
+	alert("Press SPACE to start")
 }
 
 function editorLevel() {
@@ -25,7 +33,7 @@ function editorLevel() {
 	alert("Press Space to start")
 }
 
-function levelCreator(){
+function levelCreator() {
 	menu.hideDomElem(menu.btnArr, buttons)
 	editor.showDom(editor.inputs, editorInputs)
 	editor.showDom(editor.buttons, inputButtons)
@@ -37,4 +45,6 @@ function setMap() {
 	editor.setMapChords()
 }
 
-export {defaultLevel as level0, levelCreator as redactor, editorLevel, setMap}
+export {
+	defaultLevel as level0, levelCreator as redactor, editorLevel, setMap
+}

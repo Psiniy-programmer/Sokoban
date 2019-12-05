@@ -63,8 +63,20 @@ let Data = {
     finishChords: {
         1: {finishX: 180, finishY: 60},
         2: {finishX: 180, finishY: 360},
-        3: {finishX: 70, finishY: 100},
-        4: {finishX: 150, finishY: 150}
+        3: {x: undefined, y: undefined},
+        4: {x: undefined, y: undefined},
+        5: {x: undefined, y: undefined},
+        6: {x: undefined, y: undefined},
+        7: {x: undefined, y: undefined},
+        8: {x: undefined, y: undefined},
+        9: {x: undefined, y: undefined},
+        10: {x: undefined, y: undefined},
+        11: {x: undefined, y: undefined},
+        12: {x: undefined, y: undefined},
+        13: {x: undefined, y: undefined},
+        14: {x: undefined, y: undefined},
+        15: {x: undefined, y: undefined},
+        16: {x: undefined, y: undefined}
     },
     PlayerChords: {
         x: 120,

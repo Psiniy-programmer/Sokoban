@@ -40,7 +40,7 @@ class Editor extends Dom {
 	setMapChords() {
 		let x = 0,
 			y = 0,
-			counter = 0
+			counter = 1
 
 		for (let i = 0; i < 4; i++) {
 			for (let j = 0 ; j < 4; j++) {
@@ -77,15 +77,6 @@ class Editor extends Dom {
 				counter++
 			}
 		}
-		// this.field.forEach(element => {
-		// 	x = tempCounter * 60
-		// 	y = tempCounter * 60
-		// 	if (element == 5) {
-		// 		Data.PlayerChords.x = x
-		// 		Data.PlayerChords.y = y
-		// 	}
-		// 	tempCounter++
-		// })
 	}
 }
 

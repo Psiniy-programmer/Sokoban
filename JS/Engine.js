@@ -2,7 +2,6 @@ import Box from './Box.js'
 import Data from '../Data.js'
 import Player from './Player.js'
 import Map from './Map.js';
-import NPC from './NPC.js'
 
 let canv = document.getElementById('canvas'),
     ctx = canv.getContext(`2d`);
@@ -17,15 +16,8 @@ export default class Enginge {
     constructor(mapData, wallsChords, boxesChords, boxesCount) {
         this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y, playerImg)
         this.boxes = []
-        this.setupBoxes(boxesCount,boxesChords)
+        this.setupBoxes(boxesCount, boxesChords)
         this.map = new Map(mapData, wallsChords)
-    }
-    // Заполняем поле ящиков у движка //
-    setupBoxes(boxesCount,boxesChords) {
-        for (let i = 0; i < boxesCount; i++) {
-            this.addBox()
-        }
-        this.setBoxChords(boxesCount, boxesChords)
     }
     // Создаём сами ящики //
     addBox() {
@@ -40,6 +32,23 @@ export default class Enginge {
                     this.boxes[i].x = boxesChords[key].x
                     this.boxes[i].y = boxesChords[key].y
                 }
+            }
+        }
+    }
+    // Заполняем поле ящиков у движка //
+    setupBoxes(boxesCount, boxesChords) {
+        for (let i = 0; i < boxesCount; i++) {
+            this.addBox()
+        }
+        this.setBoxChords(boxesCount, boxesChords)
+    }
+    
+     // чекер для позиции коробки
+    checkFinish() {
+        for (let key in Data.finishChords) {
+            if (this.x == Data.finishChords[key].finishX &&
+                this.y == Data.finishChords[key].finishY) {
+                this.finish = true;
             }
         }
     }
@@ -111,7 +120,7 @@ export default class Enginge {
         this.collision(key)
         this.boxes.forEach(element => {
             element.checkFinish()
-            if (element.finish == true && element.checked==false) {
+            if (element.finish == true && element.checked == false) {
                 this.player.count++;
                 element.checked = true;
             }
