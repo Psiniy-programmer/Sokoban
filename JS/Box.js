@@ -1,14 +1,14 @@
 export default class Box extends NPC {
-    constructor(xPos, yPos, img, boxCount) {
+    constructor(xPos, yPos, img) {
         super(xPos, yPos, img);
         this.finish = false;
         this.checked = false;
     }
     // чекер для позиции коробки
-    checkFinish() {
-        for (let key in Data.finishChords.default) {
-            if (this.x == Data.finishChords.default[key].finishX &&
-                this.y == Data.finishChords.default[key].finishY) {
+    checkFinish(boxChords) {
+        for (let key in boxChords) {
+            if (this.x == boxChords[key].finishX &&
+                this.y == boxChords[key].finishY) {
                 this.finish = true;
             }
         }

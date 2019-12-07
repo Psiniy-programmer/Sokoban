@@ -19,6 +19,13 @@ export default class Enginge {
         this.setupBoxes(boxesCount, boxesChords)
         this.map = new Map(mapData, wallsChords)
     }
+    deleteBox() {
+        let i = 0
+        this.boxes.forEach(element => {
+            if (element.x == undefined) element.splice(i,i)
+            i++
+        })
+    }
     // Создаём сами ящики //
     addBox() {
         let box = new Box(0, 0, boxImg)
@@ -40,6 +47,7 @@ export default class Enginge {
         for (let i = 0; i < boxesCount; i++) {
             this.addBox()
         }
+        // this.deleteBox()
         this.setBoxChords(boxesCount, boxesChords)
     }
     
@@ -112,29 +120,30 @@ export default class Enginge {
     }
 
     // кадр который постоянно будет отрисовываться
-    frame(key) {
-        if (this.player.checkCount() == true) alert("WIN")
+    frame(key, boxCount, boxChords) {
+        if (this.player.checkCount(boxCount) == true) alert("WIN")
         this.map.clear(ctx)
         this.map.drawMap(ctx)
         this.player.render(ctx)
         this.collision(key)
         this.boxes.forEach(element => {
-            element.checkFinish()
+            element.checkFinish(boxChords)
             if (element.finish == true && element.checked == false) {
                 this.player.count++;
                 element.checked = true;
             }
             element.render(ctx)
         })
+    console.table(this.boxes)
+
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
-    start() {
+    start(boxCount,boxChords) {
         this.map.drawMap(ctx)
         this.player.render(ctx);
         this.boxes.forEach(element => {
             element.render(ctx);
-        });
-
+        })
         // Регистрируем нажатие кнопочек //
         document.addEventListener('keydown', e => {
             let key = e.keyCode;
@@ -153,7 +162,7 @@ export default class Enginge {
                     this.player.move(e.keyCode);
                     break;
             }
-            this.frame(key)
+            this.frame(key,boxCount,boxChords)
         })
     }
 }

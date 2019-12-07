@@ -23,7 +23,7 @@ class Editor extends Dom {
 
 	init(other) {
 		other.forEach(element => {
-			element.value = 0
+			element.value = 6
 		})
 	}
 
@@ -40,7 +40,8 @@ class Editor extends Dom {
 	setMapChords() {
 		let x = 0,
 			y = 0,
-			counter = 1
+			counter = 1,
+			boxCounter = 0
 
 		for (let i = 0; i < 4; i++) {
 			for (let j = 0 ; j < 4; j++) {
@@ -59,10 +60,10 @@ class Editor extends Dom {
 					}
 				}
 				if (this.field[i][j] == 2) {
-					for (let key in Data.finishChords) {
+					for (let key in Data.finishChords.fromEditor) {
 						if (counter == key) {
-							Data.finishChords[key].finishX = x 
-							Data.finishChords[key].finishY = y
+							Data.finishChords.fromEditor[key].finishX = x 
+							Data.finishChords.fromEditor[key].finishY = y
 						}
 					}
 				}
@@ -71,12 +72,14 @@ class Editor extends Dom {
 						if (counter == key) {
 							Data.boxesChords.fromEditor[key].x = x
 							Data.boxesChords.fromEditor[key].y = y
+							boxCounter++
 						}
 					}
 				}
 				counter++
 			}
 		}
+			// Data.boxCount.fromEditor = boxCounter
 	}
 }
 

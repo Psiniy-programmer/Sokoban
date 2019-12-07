@@ -3,8 +3,8 @@ export default class Player extends NPC {
         super(xPos,yPos,img);
         this.count  = 0;
     }
-    checkCount() {
-        return (this.count == Data.boxCount.default) ? true : false
+    checkCount(boxCount) {
+        return (this.count == boxCount) ? true : false
     }
 }
 

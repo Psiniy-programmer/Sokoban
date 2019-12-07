@@ -18,7 +18,7 @@ const editor = new Editor()
 function defaultLevel() {
 	menu.defaultStart()
 	let kek = new Enginge(Data.map.default, Data.WallsChords.default, Data.boxesChords.default, Data.boxCount.default)
-	kek.start()
+	kek.start(Data.boxCount.default, Data.finishChords.default)
 	console.error(Data.boxCount.default)
 	alert("Press SPACE to start")
 }
@@ -28,8 +28,9 @@ function editorLevel() {
 	let kek2 = new Enginge(editor.field, Data.WallsChords.fromEditor, Data.boxesChords.fromEditor, Data.boxCount.fromEditor)
 	editor.hideDomElem(editor.inputs, editorInputs)
 	editor.hideDomElem(editor.buttons, inputButtons)
-	kek2.start()
-	console.error(Data.boxesChords)
+	kek2.start(Data.boxCount.test, Data.finishChords.fromEditor)
+	// console.error(Data.boxesChords)
+	console.warn(Data.boxCount.fromEditor)
 	alert("Press Space to start")
 }
 
