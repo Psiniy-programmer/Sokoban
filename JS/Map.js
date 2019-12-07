@@ -13,7 +13,7 @@ export default class Map extends Entity {
     drawMap(ctx) {
         for (let i = 0; i < this.map.length; i++) {
             for (let j = 0; j < this.map[i].length; j++) {
-                if (this.map[i][j] == 0 || this.map[i][j] == 5) {
+                if (this.map[i][j] == 0 || this.map[i][j] == 5 || this.map[i][j] == 6) {
                     ctx.fillStyle = "white";
                 }
                 if (this.map[i][j] == 1) {

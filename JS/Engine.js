@@ -13,18 +13,22 @@ playerImg.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8
 boxImg.src = "https://opengameart.org/sites/default/files/RTS_Crate.png"
 
 export default class Enginge {
-    constructor(mapData, wallsChords, boxesChords, boxesCount) {
+    constructor(mapData, wallsChords, boxesChords, boxesCount, boxesFinish) {
         this.player = new Player(Data.PlayerChords.x, Data.PlayerChords.y, playerImg)
         this.boxes = []
         this.setupBoxes(boxesCount, boxesChords)
         this.map = new Map(mapData, wallsChords)
+        this.start(boxesCount, boxesFinish)
     }
+    // Удаляем пустые ящики //
     deleteBox() {
-        let i = 0
-        this.boxes.forEach(element => {
-            if (element.x == undefined) element.splice(i,i)
-            i++
-        })
+        for(let j = 0; j<4;j++) {
+            let i = 0
+            this.boxes.forEach(element => {
+                if (element.x == undefined) this.boxes.splice(i,1)
+                i++
+            })
+        }
     }
     // Создаём сами ящики //
     addBox() {
@@ -47,15 +51,17 @@ export default class Enginge {
         for (let i = 0; i < boxesCount; i++) {
             this.addBox()
         }
-        // this.deleteBox()
         this.setBoxChords(boxesCount, boxesChords)
+        this.deleteBox()
+        boxesCount = this.boxes.length
+        // alert(boxesCount)
     }
     
      // чекер для позиции коробки
     checkFinish() {
         for (let key in Data.finishChords) {
-            if (this.x == Data.finishChords[key].finishX &&
-                this.y == Data.finishChords[key].finishY) {
+            if (this.x == Data.finishChords[key].x &&
+                this.y == Data.finishChords[key].y) {
                 this.finish = true;
             }
         }
@@ -74,7 +80,6 @@ export default class Enginge {
                 }
             }
         })
-
         // Коллизии для игрока и стен
         for (let key in this.map.wals) {
             if (this.player.x == this.map.wals[key].x && this.player.y == this.map.wals[key].y) {
@@ -120,8 +125,8 @@ export default class Enginge {
     }
 
     // кадр который постоянно будет отрисовываться
-    frame(key, boxCount, boxChords) {
-        if (this.player.checkCount(boxCount) == true) alert("WIN")
+    frame(key,boxChords) {
+        if (this.player.checkCount(this.boxes.length) == true) alert("WIN")
         this.map.clear(ctx)
         this.map.drawMap(ctx)
         this.player.render(ctx)
@@ -134,8 +139,6 @@ export default class Enginge {
             }
             element.render(ctx)
         })
-    console.table(this.boxes)
-
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start(boxCount,boxChords) {
@@ -162,7 +165,7 @@ export default class Enginge {
                     this.player.move(e.keyCode);
                     break;
             }
-            this.frame(key,boxCount,boxChords)
+            this.frame(key,boxChords)
         })
     }
 }

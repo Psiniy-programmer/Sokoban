@@ -35,7 +35,6 @@ let Data = {
     boxCount: {
         default: 2,
         fromEditor: 16,
-        test: 1
     },
     boxesChords: {
         default: {
@@ -63,12 +62,12 @@ let Data = {
         },
     finishChords: {
         default: {
-            1: {finishX: 180, finishY: 60},
-            2: {finishX: 180, finishY: 360}
+            1: {x: 180, y: 60},
+            2: {x: 180, y: 360}
         },
         fromEditor: {
-            1: {finishX: 180, finishY: 60},
-            2: {finishX: 180, finishY: 360},
+            1: {x: 180, y: 60},
+            2: {x: 180, y: 360},
             3: {x: undefined, y: undefined},
             4: {x: undefined, y: undefined},
             5: {x: undefined, y: undefined},

@@ -7,8 +7,8 @@ export default class Box extends NPC {
     // чекер для позиции коробки
     checkFinish(boxChords) {
         for (let key in boxChords) {
-            if (this.x == boxChords[key].finishX &&
-                this.y == boxChords[key].finishY) {
+            if (this.x == boxChords[key].x &&
+                this.y == boxChords[key].y) {
                 this.finish = true;
             }
         }
