@@ -1,7 +1,4 @@
-import {
-	Menu,
-	menuButtons
-} from "./Menu.js"
+import { Menu } from "./Menu.js"
 import {
 	Editor,
 	editorInputs,
@@ -10,22 +7,27 @@ import {
 import Enginge from "./Engine.js"
 import Data from "../Data.js"
 
-
-const menu = new Menu()
-const editor = new Editor()
+let menu = new Menu()
+let editor = new Editor()
 
 
 function defaultLevel() {
 	menu.defaultStart()
-	let kek = new Enginge(Data.map.default, Data.WallsChords.default, Data.boxesChords.default, Data.boxCount.default, Data.finishChords.default)
+	let kek = new Enginge(Data.map.default, Data.WallsChords.default, Data.boxesChords.default, Data.boxCount.default)
+	kek.start(Data.finishChords.default)
 	alert("Press SPACE to start")
 }
 
 function editorLevel() {
 	menu.defaultStart()
-	let kek2 = new Enginge(editor.field, Data.WallsChords.fromEditor, Data.boxesChords.fromEditor, Data.boxCount.fromEditor, Data.finishChords.fromEditor)
+	let kek2 = new Enginge(editor.field, Data.WallsChords.fromEditor, Data.boxesChords.fromEditor, Data.boxCount.fromEditor)
+	kek2.start(Data.finishChords.fromEditor)
 	editor.hideDomElem(editor.inputs, editorInputs)
 	editor.hideDomElem(editor.buttons, inputButtons)
+	
+	menu = null
+	editor = null
+
 	alert("Press Space to start")
 }
 

@@ -16,4 +16,3 @@ export default class Box extends NPC {
 }
 
 import NPC from './NPC.js';
-import Data from '../Data.js'

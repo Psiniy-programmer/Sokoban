@@ -6,7 +6,7 @@ export default class NPC extends Entity {
         this.y = yPos;
         this.sprite = img;
     }
-    move(dir) {
+    _move(dir) {
         if (dir == 68) {
             this.x += 60
         }
