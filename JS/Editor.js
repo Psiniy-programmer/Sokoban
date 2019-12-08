@@ -5,6 +5,9 @@ let inputs = document.getElementById("inputs"),
 	inputButtons = document.getElementById("input_buttons")
 
 class Editor extends Dom {
+	#field = null
+	#inputs = null
+	#buttons = null
 	constructor() {
 		super(),
 		this.field = [
@@ -19,6 +22,30 @@ class Editor extends Dom {
 		this.domCreate("button", inputButtons, this.buttons, 2),
 		this.setButtons(Data.editor.text, Data.editor.func, this.buttons)
 		this.hideDomElem(this.inputs, inputButtons)
+	}
+
+	get field() {
+		return this.#field;
+	}
+
+	set field(field) {
+		this.#field = field
+	}
+	
+	get inputs() {
+		return this.#inputs
+	}
+
+	set inputs(inputs) {
+		this.#inputs = inputs
+	}
+
+	get buttons() {
+		return this.#buttons
+	}
+
+	set buttons(buttons) {
+		this.#buttons = buttons
 	}
 
 	init(other) {
@@ -36,7 +63,7 @@ class Editor extends Dom {
 			}
 		}
 	}
-	helperSetter(key, data, x, y, counter, i, j) {
+	_helperSetter(key, data, x, y, counter, i, j) {
 		if (this.field[i][j] == key) {
 			for (let dataKey in data) {
 				if (counter == dataKey) {
@@ -60,9 +87,9 @@ class Editor extends Dom {
 					Data.PlayerChords.x = x
 					Data.PlayerChords.y = y
 				}
-				this.helperSetter(1, Data.WallsChords.fromEditor, x, y, counter, i, j)
-				this.helperSetter(2, Data.finishChords.fromEditor, x, y, counter, i, j)
-				this.helperSetter(6, Data.boxesChords.fromEditor, x, y, counter, i, j)
+				this._helperSetter(1, Data.WallsChords.fromEditor, x, y, counter, i, j)
+				this._helperSetter(2, Data.finishChords.fromEditor, x, y, counter, i, j)
+				this._helperSetter(6, Data.boxesChords.fromEditor, x, y, counter, i, j)
 				counter++
 			}
 		}
