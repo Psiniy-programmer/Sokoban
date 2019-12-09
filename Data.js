@@ -39,7 +39,7 @@ let Data = {
     boxesChords: {
         default: {
             1: {x: 120, y: 120},
-            2: {x: 180, y: 240}
+            2: {x: 120, y: 240}
         },
         fromEditor: {
             1: {x: undefined, y: undefined},

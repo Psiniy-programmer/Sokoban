@@ -56,7 +56,6 @@ export default class Enginge {
         this._setBoxChords(boxesCount, boxesChords)
         this._deleteBox()
     }
-    
      // чекер для позиции коробки
      _checkFinish() {
         for (let key in Data.finishChords) {
@@ -92,6 +91,10 @@ export default class Enginge {
             if (element == this.player) {
                 this.player._move(move2)
             } else {
+                if (this.player.power == true) {
+                    element._move(move2)
+                    this.player._move(move2)
+                }
                 element._move(move2)
                 this.player._move(move2)
             }
@@ -115,9 +118,9 @@ export default class Enginge {
             element.render(ctx)
         })
     }
-
     // кадр который постоянно будет отрисовываться
     _frame(key,boxChords) {
+        this.player._powerChanger(key)
         if (this.player.checkCount(this.boxes.length) == true) alert("WIN")
         this.map.clear(ctx)
         this.map.drawMap(ctx)
@@ -134,12 +137,11 @@ export default class Enginge {
         })
         // Регистрируем нажатие кнопочек //
         document.addEventListener('keydown', e => {
-            let key = e.keyCode;
-            // Если все коробочки на нужных местах то победа и все такое //
+            let key = e.keyCode
             this.player._move(e.keyCode)
             this._frame(key,boxChords)
         })
     }
 }
 
-// W = 87 // S = 83 // A = 65 // D = 68
+// W = 87 // S = 83 // A = 65 // D = 68 // SPACE = 32 // G = 71
