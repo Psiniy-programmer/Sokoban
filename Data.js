@@ -4,9 +4,9 @@ let Data = {
     map: {
         default: [
             [1, 1, 1, 1, 1, 1, 4, 4],
-            [1, 0, 0, 0, 0, 1, 4, 4],
-            [1, 0, 0, 0, 0, 1, 1, 1],
-            [1, 2, 0, 0, 0, 0, 2, 1],
+            [1, 0, 0, 0, 5, 1, 4, 4],
+            [1, 0, 0, 2, 0, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 2, 1],
             [1, 1, 1, 1, 1, 1, 1, 1],
         ],
         fromEditor: [1]
@@ -38,7 +38,7 @@ let Data = {
     },
     boxesChords: {
         default: {
-            1: {x: 180, y: 120},
+            1: {x: 120, y: 120},
             2: {x: 180, y: 240}
         },
         fromEditor: {
@@ -62,7 +62,7 @@ let Data = {
         },
     finishChords: {
         default: {
-            1: {x: 180, y: 60},
+            1: {x: 120, y: 180},
             2: {x: 180, y: 360}
         },
         fromEditor: {
@@ -133,4 +133,4 @@ let Data = {
     }
 }
 
-export default Data;
+export default Data

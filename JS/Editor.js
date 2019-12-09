@@ -25,7 +25,7 @@ class Editor extends Dom {
 	}
 
 	get field() {
-		return this.#field;
+		return this.#field
 	}
 
 	set field(field) {
