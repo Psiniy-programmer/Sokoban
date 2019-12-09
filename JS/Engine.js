@@ -1,5 +1,3 @@
-
-
 import Box from './Box.js'
 import Data from '../Data.js'
 import Player from './Player.js'
@@ -89,42 +87,33 @@ export default class Enginge {
             }
         }
     }
-
+    _collisionWallsHelper(keyB, element, move1, move2) {
+        if (keyB == move1) {
+            if (element == this.player) {
+                this.player._move(move2)
+            } else {
+                element._move(move2)
+                this.player._move(move2)
+            }
+        }
+    }
     // ну я думаю как бы понятно что тут происходит
     _collisionWalls(keyB, element) {
-        if (keyB == 65) {
-            if (element == this.player) {
-                this.player._move(68)
-            } else {
-                element._move(68);
-                this.player._move(68);
-            }
-        }
-        if (keyB == 68) {
-            if (element == this.player) {
-                this.player._move(65)
-            } else {
-                element._move(65);
-                this.player._move(65);
-            }
-        }
-        if (keyB == 87) {
-            if (element == this.player) {
-                this.player._move(83)
-            } else {
-                element._move(83);
-                this.player._move(83);
-            }
-        }
-        if (keyB == 83) {
-            if (element == this.player) {
-                this.player._move(87)
-            } else {
-                element._move(87);
-                this.player._move(87);
-            }
-        }
+        this._collisionWallsHelper(keyB, element, 65, 68)
+        this._collisionWallsHelper(keyB, element, 68, 65)
+        this._collisionWallsHelper(keyB, element, 87, 83)
+        this._collisionWallsHelper(keyB, element, 83, 87)
         this._frame();
+    }
+    _counterInc(other, boxChords) {
+        other.forEach(element => {
+            element._checkFinish(boxChords)
+            if (element.finish == true && element.checked == false) {
+                this.player.count++
+                element.checked = true
+            }
+            element.render(ctx)
+        })
     }
 
     // кадр который постоянно будет отрисовываться
@@ -134,14 +123,7 @@ export default class Enginge {
         this.map.drawMap(ctx)
         this.player.render(ctx)
         this._collision(key)
-        this.boxes.forEach(element => {
-            element._checkFinish(boxChords)
-            if (element.finish == true && element.checked == false) {
-                this.player.count++;
-                element.checked = true;
-            }
-            element.render(ctx)
-        })
+        this._counterInc(this.boxes, boxChords)
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start(boxChords) {
