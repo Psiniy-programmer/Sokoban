@@ -1,13 +1,20 @@
+
+
 import Box from './Box.js'
 import Data from '../Data.js'
 import Player from './Player.js'
-import Map from './Map.js'
+import Map from './Map.js';
 
 let canv = document.getElementById('canvas'),
-    ctx = canv.getContext(`2d`)
+    ctx = canv.getContext(`2d`);
 
 let playerImg = new Image(),
-    boxImg = new Image()
+    boxImg = new Image();
+// Приватные методы //
+
+// let deleteBox, addBox, setBoxChords, collision, collisionWalls, frame = Symbol()
+
+//////////////////////
 
 playerImg.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8f/Tourist-1.png.png/revision/latest?cb=20181204072339"
 boxImg.src = "https://opengameart.org/sites/default/files/RTS_Crate.png"
@@ -56,6 +63,16 @@ export default class Enginge {
         this._setBoxChords(boxesCount, boxesChords)
         this._deleteBox()
     }
+    
+     // чекер для позиции коробки
+     _checkFinish() {
+        for (let key in Data.finishChords) {
+            if (this.x == Data.finishChords[key].x &&
+                this.y == Data.finishChords[key].y) {
+                this.finish = true;
+            }
+        }
+    }
     // Коллизия игрока и ящика
     _collision(keyB) {
         // Коллизии для ящиков и стен
@@ -77,33 +94,44 @@ export default class Enginge {
             }
         }
     }
-    _collisionWallsHelper(keyB, element, other1, other2) {
-        if (keyB == other1) {
-            if (element == this.player) {
-                this.player._move(other2)
-            } else {
-                element._move(other2)
-                this.player._move(other2)
-            }
-        }
-    }
+
     // ну я думаю как бы понятно что тут происходит
     _collisionWalls(keyB, element) {
-        this._collisionWallsHelper(keyB, element, 65,68)
-        this._collisionWallsHelper(keyB, element, 68,65)
-        this._collisionWallsHelper(keyB, element, 87,83)
-        this._collisionWallsHelper(keyB, element, 83,87)
+        if (keyB == 65) {
+            if (element == this.player) {
+                this.player._move(68)
+            } else {
+                element._move(68);
+                this.player._move(68);
+            }
+        }
+        if (keyB == 68) {
+            if (element == this.player) {
+                this.player._move(65)
+            } else {
+                element._move(65);
+                this.player._move(65);
+            }
+        }
+        if (keyB == 87) {
+            if (element == this.player) {
+                this.player._move(83)
+            } else {
+                element._move(83);
+                this.player._move(83);
+            }
+        }
+        if (keyB == 83) {
+            if (element == this.player) {
+                this.player._move(87)
+            } else {
+                element._move(87);
+                this.player._move(87);
+            }
+        }
+        this._frame();
     }
-    // _counterInc(other,boxChords) {
-    //     other.forEach(element => {
-    //         element._checkFinish(boxChords)
-    //         if (element.finish == true && element.checked == false) {
-    //             this.player.count++
-    //             element.checked = true
-    //         }
-    //         element.render(ctx)
-    //     })
-    // }
+
     // кадр который постоянно будет отрисовываться
     _frame(key,boxChords) {
         if (this.player.checkCount(this.boxes.length) == true) alert("WIN")
@@ -114,19 +142,18 @@ export default class Enginge {
         this.boxes.forEach(element => {
             element._checkFinish(boxChords)
             if (element.finish == true && element.checked == false) {
-                this.player.count++
-                element.checked = true
+                this.player.count++;
+                element.checked = true;
             }
             element.render(ctx)
         })
-        // this._counterInc(this.boxes,boxChords)
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start(boxChords) {
         this.map.drawMap(ctx)
-        this.player.render(ctx)
+        this.player.render(ctx);
         this.boxes.forEach(element => {
-            element.render(ctx)
+            element.render(ctx);
         })
         // Регистрируем нажатие кнопочек //
         document.addEventListener('keydown', e => {
