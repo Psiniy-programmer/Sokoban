@@ -10,11 +10,6 @@ let canv = document.getElementById('canvas'),
 
 let playerImg = new Image(),
     boxImg = new Image();
-// Приватные методы //
-
-// let deleteBox, addBox, setBoxChords, collision, collisionWalls, frame = Symbol()
-
-//////////////////////
 
 playerImg.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8f/Tourist-1.png.png/revision/latest?cb=20181204072339"
 boxImg.src = "https://opengameart.org/sites/default/files/RTS_Crate.png"
@@ -31,7 +26,7 @@ export default class Enginge {
     }
     // Удаляем пустые ящики //
     _deleteBox() {
-        for(let j = 0; j<4;j++) {
+        for(let j = 0; j<5;j++) {
             let i = 0
             this.boxes.forEach(element => {
                 if (element.x == undefined) this.boxes.splice(i,1)
