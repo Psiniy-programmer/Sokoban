@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./canvas.css">
-    </head>
-    <body>
-        <canvas id="canvas" width="768" height="576"></canvas>
-        <div id="buttons">
-            
-        </div>
-        <div id="inputs"></div>
-        <div id="input_buttons"></div>
-        
-        <script type="module" src="./JS/main.js">
-            import Data from "./Data.js"
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./canvas.css">
+
+    <!-- подключаем стили Mocha, для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <!-- подключаем библиотеку Mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="768" height="576"></canvas>
+    <div id="buttons">
+
+    </div>
+    <div id="inputs"></div>
+    <div id="input_buttons"></div>
+
+    <script type="module" src="./JS/main.js">
+        import Data from "./Data.js"
             import Entity from "./JS/Entity.js"
             import Box from "./JS/Box.js"
             import Engine from "./JS/Engine.js"
@@ -26,6 +34,15 @@
             import Dom from "./JS/Dom.js"
             import Menu from "./JS/Menu.js"
             import Editor from "./JS/Editor.js"
-        </script>
-    </body>
+    </script>
+
+    <div id="mocha"></div>
+
+
+    <script src="./Tests/settngs.js"></script>
+    <script src="./Tests/test.js"></script>
+    <script src="./Tests/spec.js"></script>
+
+</body>
+
 </html>
