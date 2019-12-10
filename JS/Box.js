@@ -3,12 +3,10 @@ import NPC from './NPC.js'
 export default class Box extends NPC {
     #finish = null
     #checked = null
-    #stucked = null
     constructor(xPos, yPos, img) {
         super(xPos, yPos, img)
         this.finish = false
         this.checked = false
-        this.stucked = false
     }
 
     get finish() {
@@ -25,14 +23,6 @@ export default class Box extends NPC {
 
     set checked(val) {
         this.#checked = val
-    }
-
-    get stucked() {
-        return this.#stucked
-    }
-
-    set stucked(val) {
-        this.#stucked = val
     }
     // чекер для позиции коробки
     _checkFinish(boxChords) {

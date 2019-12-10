@@ -14,7 +14,7 @@ let Data = {
     menu: {
         text: {
             0: "CLICK ME FOR START GAME",
-            1: "CLICKE ME FOR CREATE LEVEL"
+            1: "CLICK ME FOR CREATE LEVEL"
         },
         func: {
             0: level0,

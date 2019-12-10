@@ -67,17 +67,26 @@ export default class Enginge {
     }
     // Коллизия игрока и ящика
     _collision(keyB) {
-        // Коллизии для ящиков и стен
         this.boxes.forEach(element => {
             if (this.player.x == element.x && this.player.y == element.y) {
-                element._move(keyB)
+                if (element.checked == false) {
+                    element._move(keyB)
+                }
+                if (element.checked == true) {
+                    if (keyB == 65) this.player._move(68)
+                    if (keyB == 68) this.player._move(65)
+                    if (keyB == 87) this.player._move(83)
+                    if (keyB == 83) this.player._move(87)
+                    this._frame()
+                }
+        // Коллизии для ящиков и стен
                 for (let key in this.map.wals) {
                     if (element.x == this.map.wals[key].x && element.y == this.map.wals[key].y) {
                         this._collisionWalls(keyB, element);
                         break;
                     }
                 }
-            }
+            } 
         })
         // Коллизии для игрока и стен
         for (let key in this.map.wals) {
@@ -85,10 +94,19 @@ export default class Enginge {
                 this._collisionWalls(keyB, this.player)
             }
         }
+
+    }
+        // ну я думаю как бы понятно что тут происходит
+    _collisionWalls(keyB, element) {
+        this._collisionWallsHelper(keyB, element, 65, 68)
+        this._collisionWallsHelper(keyB, element, 68, 65)
+        this._collisionWallsHelper(keyB, element, 87, 83)
+        this._collisionWallsHelper(keyB, element, 83, 87)
+        this._frame();
     }
     _collisionWallsHelper(keyB, element, move1, move2) {
         if (keyB == move1) {
-            if (element == this.player) {
+            if (element == this.player && checked == false) {
                 this.player._move(move2)
             } else {
                 if (this.player.power == true) {
@@ -96,17 +114,9 @@ export default class Enginge {
                     this.player._move(move2)
                 }
                 element._move(move2)
-                this.player._move(move2)
+                    this.player._move(move2)
             }
         }
-    }
-    // ну я думаю как бы понятно что тут происходит
-    _collisionWalls(keyB, element) {
-        this._collisionWallsHelper(keyB, element, 65, 68)
-        this._collisionWallsHelper(keyB, element, 68, 65)
-        this._collisionWallsHelper(keyB, element, 87, 83)
-        this._collisionWallsHelper(keyB, element, 83, 87)
-        this._frame();
     }
     _counterInc(other, boxChords) {
         other.forEach(element => {
@@ -115,18 +125,28 @@ export default class Enginge {
                 this.player.count++
                 element.checked = true
             }
-            element.render(ctx)
         })
     }
     // кадр который постоянно будет отрисовываться
     _frame(key,boxChords) {
-        this.player._powerChanger(key)
-        if (this.player.checkCount(this.boxes.length) == true) alert("WIN")
-        this.map.clear(ctx)
-        this.map.drawMap(ctx)
-        this.player.render(ctx)
-        this._collision(key)
-        this._counterInc(this.boxes, boxChords)
+        try {
+            this.player._powerChanger(key)
+            if (this.player.checkCount(this.boxes.length) == true) alert("WIN")
+            this.map.clear(ctx)
+            this.map.drawMap(ctx)
+            this.player.render(ctx)
+            this._collision(key)
+            this._counterInc(this.boxes, boxChords) 
+            this.boxes.forEach(element => element.render(ctx))
+        } catch(err) {
+            if (err.name == "RangeError") {
+                alert("Game Over")
+                this.player = null
+                this.boxes = null
+                this.map = null
+                location.reload()
+            }
+        }
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start(boxChords) {
