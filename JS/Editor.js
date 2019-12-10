@@ -11,21 +11,22 @@ class Editor extends Dom {
 	constructor() {
 		super(),
 		this.field = [
-			[0, 0, 0, 0],
-			[0, 0, 0, 0],
-			[0, 0, 0, 0],
-			[0, 0, 0, 0]
+			[0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0],
+			[0, 0, 0, 0 ,0],
+			[0, 0, 0, 0, 0]
 		],
 		this.inputs = [],
 		this.buttons = [],
-		this.domCreate("input", inputs, this.inputs, 16),
+		this.domCreate("input", inputs, this.inputs, 25),
 		this.domCreate("button", inputButtons, this.buttons, 2),
 		this.setButtons(Data.editor.text, Data.editor.func, this.buttons)
 		this.hideDomElem(this.inputs, inputButtons)
 	}
 
 	get field() {
-		return this.#field;
+		return this.#field
 	}
 
 	set field(field) {
@@ -50,14 +51,14 @@ class Editor extends Dom {
 
 	init(other) {
 		other.forEach(element => {
-			element.value = 6
+			element.value = 0
 		})
 	}
 
 	pushF() {
 		let tempCounter = 0;
-		for (let i = 0; i < 4; i++) {
-			for (let j = 0; j < 4; j++) {
+		for (let i = 0; i < 5; i++) {
+			for (let j = 0; j < 5; j++) {
 				this.field[i][j] = this.inputs[tempCounter].value
 				tempCounter++
 			}
@@ -79,8 +80,8 @@ class Editor extends Dom {
 			y = 0,
 			counter = 1
 
-		for (let i = 0; i < 4; i++) {
-			for (let j = 0; j < 4; j++) {
+		for (let i = 0; i < 5; i++) {
+			for (let j = 0; j < 5; j++) {
 				x = i * 60
 				y = j * 60
 				if (this.field[i][j] == 5) {
@@ -93,7 +94,6 @@ class Editor extends Dom {
 				counter++
 			}
 		}
-		// Data.boxCount.fromEditor = boxCounter
 	}
 }
 

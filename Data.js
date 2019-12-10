@@ -5,8 +5,8 @@ let Data = {
         default: [
             [1, 1, 1, 1, 1, 1, 4, 4],
             [1, 0, 0, 0, 0, 1, 4, 4],
-            [1, 0, 0, 0, 0, 1, 1, 1],
-            [1, 2, 0, 0, 0, 0, 2, 1],
+            [1, 0, 0, 2, 0, 1, 1, 1],
+            [1, 0, 5, 0, 0, 0, 2, 1],
             [1, 1, 1, 1, 1, 1, 1, 1],
         ],
         fromEditor: [1]
@@ -14,7 +14,7 @@ let Data = {
     menu: {
         text: {
             0: "CLICK ME FOR START GAME",
-            1: "CLICKE ME FOR CREATE LEVEL"
+            1: "CLICK ME FOR CREATE LEVEL"
         },
         func: {
             0: level0,
@@ -34,12 +34,12 @@ let Data = {
     },
     boxCount: {
         default: 2,
-        fromEditor: 16,
+        fromEditor: 25,
     },
     boxesChords: {
         default: {
-            1: {x: 180, y: 120},
-            2: {x: 180, y: 240}
+            1: {x: 120, y: 120},
+            2: {x: 120, y: 240}
         },
         fromEditor: {
             1: {x: undefined, y: undefined},
@@ -57,12 +57,21 @@ let Data = {
             13: {x: undefined, y: undefined},
             14: {x: undefined, y: undefined},
             15: {x: undefined, y: undefined},
-            16: {x: undefined, y: undefined}
+            16: {x: undefined, y: undefined},
+            17: {x: undefined, y: undefined},
+            18: {x: undefined, y: undefined},
+            19: {x: undefined, y: undefined},
+            20: {x: undefined, y: undefined},
+            21: {x: undefined, y: undefined},
+            22: {x: undefined, y: undefined},
+            23: {x: undefined, y: undefined},
+            24: {x: undefined, y: undefined},
+            25: {x: undefined, y: undefined}
             },
         },
     finishChords: {
         default: {
-            1: {x: 180, y: 60},
+            1: {x: 120, y: 180},
             2: {x: 180, y: 360}
         },
         fromEditor: {
@@ -81,7 +90,16 @@ let Data = {
             13: {x: undefined, y: undefined},
             14: {x: undefined, y: undefined},
             15: {x: undefined, y: undefined},
-            16: {x: undefined, y: undefined}
+            16: {x: undefined, y: undefined},
+            17: {x: undefined, y: undefined},
+            18: {x: undefined, y: undefined},
+            19: {x: undefined, y: undefined},
+            20: {x: undefined, y: undefined},
+            21: {x: undefined, y: undefined},
+            22: {x: undefined, y: undefined},
+            23: {x: undefined, y: undefined},
+            24: {x: undefined, y: undefined},
+            25: {x: undefined, y: undefined}
         },
     },
     PlayerChords: {
@@ -128,9 +146,18 @@ let Data = {
             13: {x:-100, y:0},
             14: {x:-100, y:0},
             15: {x:-100, y:0},
-            16: {x:-100, y:0}
+            16: {x:-100, y:0},
+            17: {x:-100, y:0},
+            18: {x:-100, y:0},
+            19: {x:-100, y:0},
+            20: {x:-100, y:0},
+            21: {x:-100, y:0},
+            22: {x:-100, y:0},
+            23: {x:-100, y:0},
+            24: {x:-100, y:0},
+            25: {x:-100, y:0}
         },
     }
 }
 
-export default Data;
+export default Data
