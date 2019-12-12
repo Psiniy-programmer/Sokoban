@@ -96,7 +96,7 @@ export default class Enginge {
         }
 
     }
-        // ну я думаю как бы понятно что тут происходит
+    // ну я думаю как бы понятно что тут происходит
     _collisionWalls(keyB, element) {
         this._collisionWallsHelper(keyB, element, 65, 68)
         this._collisionWallsHelper(keyB, element, 68, 65)
@@ -106,7 +106,7 @@ export default class Enginge {
     }
     _collisionWallsHelper(keyB, element, move1, move2) {
         if (keyB == move1) {
-            if (element == this.player && checked == false) {
+            if (element == this.player) {
                 this.player._move(move2)
             } else {
                 if (this.player.power == true) {
@@ -130,8 +130,12 @@ export default class Enginge {
     // кадр который постоянно будет отрисовываться
     _frame(key,boxChords) {
         try {
+            this._endGame()
             this.player._powerChanger(key)
-            if (this.player.checkCount(this.boxes.length) == true) alert("WIN")
+            if (this.player.checkCount(this.boxes.length) == true) {
+                alert("WIN")
+                location.reload()
+            }
             this.map.clear(ctx)
             this.map.drawMap(ctx)
             this.player.render(ctx)
@@ -147,9 +151,49 @@ export default class Enginge {
                 location.reload()
             }
         }
+        console.log(this.player.x + " ... " + this.player.y)
+    }
+    _endGameChords() {
+        let counter = 1
+        console.table(this.map.map)
+        for (let i = 1; i < this.map.map.length - 1; i++) {
+            for (let j = 1; j < this.map.map[i].length; j++) {
+                if (this.map.map[i - 1][j] == 1  && this.map.map[i][j - 1] == 1) {
+                    Data.endGame[counter].x = i * 60
+                    Data.endGame[counter].y = j * 60
+                }
+                if (this.map.map[i + 1][j] == 1 && this.map.map[i][j-1] == 1) {
+                    Data.endGame[counter].x = i * 60
+                    Data.endGame[counter].y = j * 60
+                }
+                if (this.map.map[i+1][j] == 1 && this.map.map[i][j+1] == 1) {
+                    Data.endGame[counter].x = i * 60
+                    Data.endGame[counter].y = j * 60
+                }
+                if (this.map.map[i-1][j] == 1 && this.map.map[i][j+1] == 1) {
+                    Data.endGame[counter].x = i * 60
+                    Data.endGame[counter].y = j * 60
+                }
+                counter++
+            }
+        }
+        console.table(Data.endGame)
+        console.error
+    }
+
+    _endGame() {
+        this.boxes.forEach(element => {
+            for (let key in Data.endGame) {
+                if (element.x == Data.endGame[key].x && element.y == Data.endGame[key].y) {
+                    alert("BOX STUCKED")
+                    location.reload()
+                }
+            }
+        })
     }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start(boxChords) {
+        this._endGameChords()
         this.map.drawMap(ctx)
         this.player.render(ctx);
         this.boxes.forEach(element => {
@@ -165,3 +209,4 @@ export default class Enginge {
 }
 
 // W = 87 // S = 83 // A = 65 // D = 68 // SPACE = 32 // G = 71
+

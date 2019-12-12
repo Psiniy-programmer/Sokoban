@@ -1,14 +1,14 @@
 export default class Dom {
 	domCreate(type, DOM, other, count) {
-		for(let i = 0 ; i < count;i++) {
+		for (let i = 0; i < count; i++) {
 			other[i] = document.createElement(type)
 			other[i].className = type + " " + type + i
 
 		}
-	other.forEach(element => {
-		element.type = type
-		DOM.appendChild(element)
-	})
+		other.forEach(element => {
+			element.type = type
+			DOM.appendChild(element)
+		})
 	}
 
 	setButtons(dataText, dataFunc, other) {
@@ -22,7 +22,7 @@ export default class Dom {
 
 	hideDomElem(other, domElem) {
 		other.forEach(element => {
-		element.style.display = 'none'
+			element.style.display = 'none'
 		})
 		domElem.style.display = 'none'
 	}
