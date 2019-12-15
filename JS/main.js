@@ -12,18 +12,20 @@ Tests()
 let unit = document.getElementById("mocha")
 function defaultLevel() {
 	menu.defaultStart()
-	let kek = new Enginge(Data.map.default, Data.WallsChords.default, Data.boxesChords.default, Data.boxCount.default)
+	
+	let kek = new Enginge(Data.map.default, Data.WallsChords.default, Data.boxesChords.default, Data.boxCount.default, Data.finishChords.default)
 	kek.start(Data.finishChords.default)
+
 	unit.style.display="none"
 	alert("Press SPACE to start")
 }
 
 function editorLevel() {
 	menu.defaultStart()
+	
 	let kek2 = new Enginge(editor.field, Data.WallsChords.fromEditor, Data.boxesChords.fromEditor, Data.boxCount.fromEditor)
 	kek2.start(Data.finishChords.fromEditor)
-
-	unit.style.display="none"
+	
 	editor.hideDomElem(editor.inputs, editorInputs)
 	editor.hideDomElem(editor.buttons, inputButtons)
 
@@ -34,6 +36,8 @@ function editorLevel() {
 }
 
 function levelCreator() {
+	unit.style.display="none"
+
 	menu.hideDomElem(menu.btnArr, buttons)
 	editor.showDom(editor.inputs, editorInputs)
 	editor.showDom(editor.buttons, inputButtons)
