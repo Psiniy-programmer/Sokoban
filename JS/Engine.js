@@ -4,10 +4,10 @@ import Player from './Player.js'
 import Map from './Map.js';
 
 let canv = document.getElementById('canvas'),
-    ctx = canv.getContext(`2d`);
+    ctx = canv.getContext(`2d`)
 
 let playerImg = new Image(),
-    boxImg = new Image();
+    boxImg = new Image()
 
 playerImg.src = "https://vignette.wikia.nocookie.net/terrariafanideas/images/8/8f/Tourist-1.png.png/revision/latest?cb=20181204072339"
 boxImg.src = "https://opengameart.org/sites/default/files/RTS_Crate.png"
@@ -177,8 +177,7 @@ export default class Enginge {
                 counter++
             }
         }
-        console.table(Data.endGame)
-        console.error
+        
     }
 
     _endGame() {
@@ -191,9 +190,21 @@ export default class Enginge {
             }
         })
     }
+
+    _deleteChords(finishChords) {
+        for (let key in finishChords) {
+            for (let key2 in Data.endGame) {
+                if (finishChords[key].x == Data.endGame[key2].x && finishChords[key].y == Data.endGame[key2].y ) {
+                    Data.endGame[key2].x = undefined
+                    Data.endGame[key2].y = undefined
+                }
+            }
+        }
+    }
     // Тут будем рисовать всё это дело (Ящики, игрока и карту) //
     start(boxChords) {
         this._endGameChords()
+        this._deleteChords(boxChords)
         this.map.drawMap(ctx)
         this.player.render(ctx);
         this.boxes.forEach(element => {
